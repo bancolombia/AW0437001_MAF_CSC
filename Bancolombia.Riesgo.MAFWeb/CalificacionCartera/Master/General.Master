@@ -1,0 +1,183 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="General.Master.cs" Inherits="Bancolombia.Riesgo.MAFWeb.CalificacionCartera.Master.General" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title></title>
+    <link href="<%# ResolveUrl("~/css/CalificacionCartera/analisisFinanciero.css") %>" type="text/css" rel="Stylesheet" />
+    <link href="<%# ResolveUrl("~/css/CalificacionCartera/tabContainer.css")%>" type="text/css" rel="Stylesheet" />
+    <link type="text/css" rel="stylesheet" href="../css/jquery.ui.all.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/demos.css"/>
+	<script type="text/javascript" src="../js/jquery-1.7.1.js"></script>
+	<script type="text/javascript" src="../js/ui/jquery.ui.core.js"></script>
+	<script type="text/javascript" src="../js/ui/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="../js/ui/jquery.ui.datepicker.js"></script>
+	<script type="text/javascript" language="javascript">
+
+
+	    function Count(text, maxlong) {
+	        var maxlength = new Number(maxlong); // Change number to your max length.
+	        if (text.value.length > maxlength) {
+	            text.value = text.value.substring(0, maxlength);
+	            //alert(" Only " + maxlong + " characters"); 
+	        }
+	    }
+
+	   
+	    function textboxAreaMaxNumber(txt, maxLen) {
+	        try {
+	            if (txt.value.length > (maxLen - 1))
+
+	                return false;
+	        } catch (e) {
+	        }
+	    } //Fin function
+	    // funcion que permite cambiar un numero en formato de miles
+	    function format(input) {
+	        var num = input.value.replace(/\./g, "");
+	        if (!isNaN(num)) {
+	            num = num.toString().split("").reverse().join("").replace(/(?=\d*\.?)(\d{3})/g, "$1.");
+	            num = num.split("").reverse().join("").replace(/^[\.]/, "");
+	            input.value = num;
+	        }
+
+	        else {
+	            alert('Solo se permiten numeros');
+	            input.value = input.value.replace(/[^\d\.]*/g, "");
+	        }
+	    } 
+          
+          
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style3
+        {
+            width: 18%;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    
+    <div style="text-align:center">
+    <table width="100%">
+            <tr>
+                <td align="center" width="15%" rowspan="3">
+                    &nbsp;</td>
+                <td align="center" colspan="2">
+                    <%--<img src="<%= Request.Url.Scheme+"://"+Request.Url.Host+":"+Request.Url.Port%>/img/CalificacionCartera/CabezoteCartera.png" alt="CalificacionCartera" /></td>--%>
+                    <img src="../img/CalificacionCartera/CabezoteCartera.png"" alt="CalificacionCartera" /></td>
+                <td align="center" width="15%" rowspan="3">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td align="left" valign="top" width="10%">
+                    <div>
+                    
+                        <%--<asp:UpdatePanel ID="upMaster" runat="server"><ContentTemplate>--%>
+                        <table width="100%">
+                            <tr>
+                                <td align="left" class="lblLinea">
+                                    ROL:
+                                </td>
+                                <td align="left" class="lblNormal">
+                                    <asp:Label ID="lblUsuario" runat="server"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="left" class="SeparadorArriba">
+                                    <%--<asp:Panel ID="pnlMenu" runat="server" CssClass="linkBNormal">
+                                    </asp:Panel>--%>
+                                    <asp:ListView ID="lsvMenu" runat="server" ItemPlaceholderID="itemContainer">
+                                        <LayoutTemplate>
+                                            <asp:PlaceHolder ID="itemContainer" runat="server"></asp:PlaceHolder>
+                                        </LayoutTemplate>
+                                        <ItemTemplate>
+                                            <table width="169" height="20" border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td width="5" valign="middle">
+                                                    </td>
+                                                    <td width="165" valign="middle">
+                                                        <img src="<%# ResolveUrl("~/img/menu_05.jpg")%>" alt="Menu" width="20" height="13" align="absmiddle" style="float: left;
+                                                            margin: 0px 4px 15px 0px" />
+                                                        <asp:HyperLink ID="lnkSeccion" Text='<%# Eval("Nombre") %>' NavigateUrl='<%# Eval("Url") %>' runat="server" CssClass="lblNormal"></asp:HyperLink>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="lblLineaCentrado SeparadorArriba" colspan="2">
+                                    <asp:Label ID="lblPeriodos" runat="server" Text="CONSULTA PROCESOS ANTERIORES"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="SeparadorArriba" colspan="2">
+                                    <asp:ListView ID="lsvPeriodos" runat="server" ItemPlaceholderID="itemContainer">
+                                        <LayoutTemplate>
+                                            <asp:PlaceHolder ID="itemContainer" runat="server"></asp:PlaceHolder>
+                                        </LayoutTemplate>
+                                        <ItemTemplate>
+                                            <table width="169" height="20" border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td width="5" valign="middle">
+                                                    </td>
+                                                    <td width="165" valign="middle" align="center">
+                                                        <asp:HyperLink ID="lnkSeccion" Text='<%# Container.DataItem %>' NavigateUrl='<%# "../ConsultarClientePrdo.aspx?Prdo="+Container.DataItem %>' runat="server" CssClass="lblNormal"></asp:HyperLink>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </ItemTemplate>
+                                    </asp:ListView>    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="SeparadorArriba" colspan="2">
+                                    <asp:LinkButton ID="lbSalir" runat="server" onclick="lbSalir_Click" 
+                                        CssClass="linkB">Cerrar Sesión</asp:LinkButton>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="style2">
+                                    &nbsp;</td>
+                                <td>
+                                    &nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="style2">
+                                    &nbsp;</td>
+                                <td>
+                                    &nbsp;</td>
+                            </tr>
+                        </table>
+                        <%--</ContentTemplate></asp:UpdatePanel>--%>
+                    </div>    
+                </td>
+                <td align="left" valign="top" class="SeparadorLados" style="border-bottom: solid 1px #666;">
+                    <div id="titulo" class="TituloPrincipal"><asp:Label ID="lblTitulo" Text="" runat="server"></asp:Label></div>
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        
+                            
+                        
+                        </asp:ContentPlaceHolder>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            </table>
+    </div>
+    
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Bancolombia.Riesgo.MAFWeb.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Bancolombia_Riesgo_MAFWeb_Cartera_WSCalificacion_Cartera" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:8080/CalificacionCartera.asmx</Value>
+    </Setting>
+    <Setting Name="TimeoutWebServices" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1200000</Value>
+    </Setting>
+    <Setting Name="Bancolombia_Riesgo_MAFWeb_WSSeguridad_Seguridad" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:8080/Seguridad.asmx</Value>
+    </Setting>
+    <Setting Name="DominioWSE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Bancolombia</Value>
+    </Setting>
+    <Setting Name="Bancolombia_Riesgo_MAFWeb_WSEventos_Eventos" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/Eventos.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
